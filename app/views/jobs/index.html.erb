@@ -95,16 +95,18 @@
           Industry
         </label>
 
-        <input type="text" id="industry_id_box" name="query_industry_id">
+
+        <select id="industry_id_box" name="query_industry_id">
+
+          <% Industry.all.order(:name).each do |a_industry|%>
+          <option value="<%=a_industry.id%>%">
+            <%= a_industry.name%>
+          </option>
+          <% end%>
+        </select>
       </div>
 
-      <div>
-        <label for="org_id_box">
-          Org id
-        </label>
 
-        <input type="text" id="org_id_box" name="query_org_id">
-      </div>
 
       <div>
         <label for="role_box">

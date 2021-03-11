@@ -10,6 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_03_11_055223) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "job_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "industries", force: :cascade do |t|
+    t.string "name"
+    t.integer "jobs_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "interested_industries", force: :cascade do |t|
+    t.integer "industry_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "link"
+    t.text "description"
+    t.boolean "int_students"
+    t.date "deadline"
+    t.integer "industry_id"
+    t.integer "org_id"
+    t.text "role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "website"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "org_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password_digest"
+    t.text "bio"
+    t.integer "favorites_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
 end

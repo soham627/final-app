@@ -24,8 +24,9 @@ class JobsController < ApplicationController
     the_job.int_students = params.fetch("query_int_students", false)
     the_job.deadline = params.fetch("query_deadline")
     the_job.industry_id = params.fetch("query_industry_id")
-    the_job.org_id = params.fetch("query_org_id")
     the_job.role = params.fetch("query_role")
+
+    the_job.org_id = params.fetch("query_org_id")
 
     if the_job.valid?
       the_job.save

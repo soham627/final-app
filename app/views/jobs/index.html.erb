@@ -16,6 +16,51 @@
 
     <form action="/insert_job" method="post">
       <div>
+        <label for="org_name_selector">
+          Organization:
+        </label>
+
+        <select id="org_name_selector" name="prepop_org">
+          <option value='blank'>
+            ------------------------
+          </option>
+          <option value='none'>
+            Add new organization
+          </option>
+          <% Organization.all.order(:name).each do |a_org|%>
+          <option value="<%=a_org.name%>%">
+            <%= a_org.name%>
+          </option>
+          <% end%>
+        </select>
+      </div>
+      <div>
+        If we don't have the organization on record, tell us a little more about it:
+      </div>
+      <div>
+
+        <label for="new_org">
+          Name of Organization
+        </label>
+
+        <input type="text" id="new_org" name="new_org_name">
+      </div>
+      <div>
+
+        <label for="new_web">
+          Website
+        </label>
+
+        <input type="string" id="new_web" name="new_org_website">
+      </div>
+      <div>
+      <hr>
+
+      <hr>
+        <h3>
+          Job details
+        </h3>
+
         <label for="link_box">
           Link
         </label>
@@ -55,7 +100,7 @@
 
       <div>
         <label for="org_id_box">
-          Org
+          Org id
         </label>
 
         <input type="text" id="org_id_box" name="query_org_id">

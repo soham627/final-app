@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: jobs
+#
+#  id           :integer          not null, primary key
+#  deadline     :date
+#  description  :text
+#  int_students :boolean
+#  link         :string
+#  role         :text
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  industry_id  :integer
+#  org_id       :integer
+#
 class Job < ApplicationRecord
   has_many  :favorites, dependent: :destroy
   belongs_to :industry, counter_cache: true

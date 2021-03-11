@@ -26,7 +26,7 @@ class JobsController < ApplicationController
     the_job.industry_id = params.fetch("query_industry_id")
     the_job.role = params.fetch("query_role")
     orgname = params.fetch("prepop_org")
-    if orgname == 'blank' || orgname == 'blank'
+    if orgname == 'blank' || orgname == 'none'
       new_orga = Organization.new 
       new_orga.name = params.fetch("new_org_name")
       new_orga.website = params.fetch("new_org_website")

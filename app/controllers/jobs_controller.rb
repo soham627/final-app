@@ -25,8 +25,24 @@ class JobsController < ApplicationController
     the_job.deadline = params.fetch("query_deadline")
     the_job.industry_id = params.fetch("query_industry_id")
     the_job.role = params.fetch("query_role")
+    orgname = params.fetch("prepop_org")
+    if orgname == 'blank' || orgname == 'blank'
+      new_orga = Organization.new 
+      new_orga.name = params.fetch("new_org_name")
+      new_orga.website = params.fetch("new_org_website")
+      if new_orga.valid?
+        new_orga.save
+      else
+        redirect_to("/jobs/index", { :notice => "Organization is invalid." })
+      end
+      the_job.org_id = new_orga.id
+    else  
+      the_org_name = params.fetch("prepop_org")
+      the_org = Organization.where({ :name => the_org_name}).at(0)
+      the_job.org_id = the_org.id
+    end 
 
-    the_job.org_id = params.fetch("query_org_id")
+    ###the_job.org_id = params.fetch("query_org_id")
 
     if the_job.valid?
       the_job.save

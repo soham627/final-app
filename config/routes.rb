@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Interested industry resource:
+
+  # CREATE
+  post("/insert_interested_industry", { :controller => "interested_industries", :action => "create" })
+          
+  # READ
+  get("/interested_industries", { :controller => "interested_industries", :action => "index" })
+  
+  get("/interested_industries/:path_id", { :controller => "interested_industries", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_interested_industry/:path_id", { :controller => "interested_industries", :action => "update" })
+  
+  # DELETE
+  get("/delete_interested_industry/:path_id", { :controller => "interested_industries", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Industry resource:
 
   # CREATE

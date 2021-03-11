@@ -2,6 +2,25 @@ Rails.application.routes.draw do
 
 
 
+  # Routes for the Organization resource:
+
+  # CREATE
+  post("/insert_organization", { :controller => "organizations", :action => "create" })
+          
+  # READ
+  get("/organizations", { :controller => "organizations", :action => "index" })
+  
+  get("/organizations/:path_id", { :controller => "organizations", :action => "show" })
+  
+  # UPDATE
+  
+  post("/modify_organization/:path_id", { :controller => "organizations", :action => "update" })
+  
+  # DELETE
+  get("/delete_organization/:path_id", { :controller => "organizations", :action => "destroy" })
+
+  #------------------------------
+
   # Routes for the Interested industry resource:
 
   # CREATE

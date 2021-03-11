@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all organizations
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new organization
+    </h2>
+
+    <form action="/insert_organization" method="post">
+      <div>
+        <label for="website_box">
+          Website
+        </label>
+
+        <input type="text" id="website_box" name="query_website">
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <button>
+        Create organization
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Website
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_organizations.each do |an_organization| %>
+      <tr>
+        <td>
+          <%= an_organization.id %>
+        </td>
+
+        <td>
+          <%= an_organization.website %>
+        </td>
+
+        <td>
+          <%= an_organization.name %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_organization.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_organization.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/organizations/<%= an_organization.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

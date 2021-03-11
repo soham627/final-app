@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Organization #<%= @the_organization.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/organizations">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_organization/<%= @the_organization.id %>">
+          Delete organization
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Website
+      </dt>
+      <dd>
+        <%= @the_organization.website %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_organization.name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_organization.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_organization.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit organization
+    </h2>
+
+    <form action="/modify_organization/<%= @the_organization.id %>"  method="post" >
+      <div>
+        <label for="website_box">
+          Website
+        </label>
+
+        <input type="text" id="website_box" name="query_website" value="<%= @the_organization.website %>">
+      </div>
+
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_organization.name %>">
+      </div>
+
+      <button>
+        Update organization
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

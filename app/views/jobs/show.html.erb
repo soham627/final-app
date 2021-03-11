@@ -1,0 +1,161 @@
+<div>
+  <div>
+    <h1>
+      Job #<%= @the_job.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/jobs">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_job/<%= @the_job.id %>">
+          Delete job
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Link
+      </dt>
+      <dd>
+        <%= @the_job.link %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_job.description %>
+      </dd>
+
+      <dt>
+        Int students
+      </dt>
+      <dd>
+        <%= @the_job.int_students %>
+      </dd>
+
+      <dt>
+        Deadline
+      </dt>
+      <dd>
+        <%= @the_job.deadline %>
+      </dd>
+
+      <dt>
+        Industry
+      </dt>
+      <dd>
+        <%= @the_job.industry_id %>
+      </dd>
+
+      <dt>
+        Org
+      </dt>
+      <dd>
+        <%= @the_job.org_id %>
+      </dd>
+
+      <dt>
+        Role
+      </dt>
+      <dd>
+        <%= @the_job.role %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_job.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_job.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit job
+    </h2>
+
+    <form action="/modify_job/<%= @the_job.id %>"  method="post" >
+      <div>
+        <label for="link_box">
+          Link
+        </label>
+
+        <input type="text" id="link_box" name="query_link" value="<%= @the_job.link %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description"><%= @the_job.description %></textarea>
+      </div>
+
+      <div>
+        <input type="checkbox" id="int_students_box" name="query_int_students" value="1" <%= "checked" if @the_job.int_students %>>
+
+        <label for="int_students_box">
+            Int students
+        </label>
+      </div>
+
+      <div>
+        <label for="deadline_box">
+          Deadline
+        </label>
+
+        <input type="date" id="deadline_box" name="query_deadline" value="<%= @the_job.deadline %>">
+      </div>
+
+      <div>
+        <label for="industry_id_box">
+          Industry
+        </label>
+
+        <input type="text" id="industry_id_box" name="query_industry_id" value="<%= @the_job.industry_id %>">
+      </div>
+
+      <div>
+        <label for="org_id_box">
+          Org
+        </label>
+
+        <input type="text" id="org_id_box" name="query_org_id" value="<%= @the_job.org_id %>">
+      </div>
+
+      <div>
+        <label for="role_box">
+          Role
+        </label>
+
+        <textarea id="role_box" name="query_role"><%= @the_job.role %></textarea>
+      </div>
+
+      <button>
+        Update job
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

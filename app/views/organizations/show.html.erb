@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      Organization #<%= @the_organization.id %> details
+      <%= @the_organization.name %> 
     </h1>
 
     <div>
@@ -10,12 +10,13 @@
           Go back
         </a>
       </div>
-
+      <%if @current_user!= nil && @current_user.id==1%>
       <div>
         <a href="/delete_organization/<%= @the_organization.id %>">
           Delete organization
         </a>
       </div>
+      <%end%>
     </div>
 
     <dl>

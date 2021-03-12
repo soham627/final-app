@@ -177,7 +177,11 @@
         </td>
 
         <td>
-          <%= a_job.int_students %>
+          <%if a_job.int_students== true%>
+            Yes
+          <%else%>
+            No
+          <%end %>
         </td>
 
         <td>

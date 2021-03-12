@@ -21,39 +21,18 @@
 
     <dl>
       <dt>
+        <a href="<%= @the_organization.website %>">
         Website
+        </a>
       </dt>
-      <dd>
-        <%= @the_organization.website %>
-      </dd>
-
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @the_organization.name %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_organization.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_organization.updated_at) %> ago
-      </dd>
+    
     </dl>
   </div>
 </div>
 
 <hr>
 
-
+<%if @current_user!=nil && @current_user.id==1%>
 <div>
   <div>
     <h2>
@@ -85,3 +64,80 @@
 </div>
 
 <hr>
+<%end%>
+<h3>Jobs at <%= @the_organization.name %> </h3>
+<div>
+    <%if @the_organization.jobs.at(0)==nil%>
+      <div>There are currently no listed <%=@the_organization.name%> jobs. <a href='/jobs/creator'>Add one!</a>
+      </div>
+    <%else%>
+        <table>
+          <tr>
+
+            <th>
+              Role
+            </th>
+
+            <th>
+              Industry
+            </th>
+
+            <th>
+              International students?
+            </th>
+
+            <th>
+              Deadline
+            </th>
+
+            <th>
+              Posted at
+            </th>
+
+            <th>
+              Apply
+            </th>
+
+          </tr>
+
+          <% @the_organization.jobs.each do |a_job| %>
+          <tr>
+            <td>
+              <a href="/jobs/<%= a_job.id %>">
+              <%= a_job.role %>
+              </a>
+            </td>
+            <td>
+              <%= a_job.industry.name %>
+            </td>
+
+            <td>
+              <%if a_job.int_students== true%>
+                Yes
+              <%else%>
+                No
+              <%end %>
+            </td>
+
+            <td>
+              <%= a_job.deadline %>
+            </td>
+
+            <td>
+              <%= time_ago_in_words(a_job.created_at) %> ago
+            </td>
+
+            <td>
+              <a href="<%= a_job.link %>" target="_blank">
+                Apply
+              </a>
+              
+            </td>
+
+
+
+          </tr>
+          <% end %>
+        </table>
+    <%end %>
+  </div>

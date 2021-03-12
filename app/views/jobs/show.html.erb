@@ -16,19 +16,19 @@
         </a>
       </div>
 
-     
+      <% if @the_job.poster_id == @current_user.id%>
       <div>
         <a href="/delete_job/<%= @the_job.id %>">
           Delete job
         </a>
       </div>
+      <%end%>
     </div>
 
     <dl>
       <a href="<%= @the_job.link %>">
       <dt>
         Apply here
-        <%=@the_job%>
       </dt>
       </a>
 
@@ -76,7 +76,7 @@
 
 <hr>
 
-
+<% if @the_job.poster_id == @current_user.id%>
 <div>
   <div>
     <h2>
@@ -146,5 +146,5 @@
     </form>
   </div>
 </div>
-
+<%end %>
 <hr>

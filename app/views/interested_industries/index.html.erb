@@ -16,13 +16,13 @@
 
     <form action="/insert_interested_industry" method="post">
       <div>
-        <label for="industry_id_box">
+        <label for="interest_id_box">
           Industry
         </label>
-        <select id="industry_id_box" name="query_industry_id">
+        <select id="interest_id_box" name="query_interest_id">
           
-          <% Industry.all.order(:name).each do |a_industry|%>
-          <option value="<%=a_industry.name%>">
+          <% @left_industries.all.order(:name).each do |a_industry|%>
+          <option value="<%=a_industry.id%>">
             <%= a_industry.name%>
           </option>
           <% end%>
@@ -52,6 +52,7 @@
       <tr>
 
         <td>
+          
           <%= an_interested_industry.industry_id %>
         </td>
 

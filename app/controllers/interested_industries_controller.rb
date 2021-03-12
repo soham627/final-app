@@ -3,6 +3,11 @@ class InterestedIndustriesController < ApplicationController
     matching_interested_industries = InterestedIndustry.all
 
     @list_of_interested_industries = matching_interested_industries.order({ :created_at => :desc })
+
+
+    @liked_inds = InterestedIndustry.where({ :user_id => @current_user.id})
+    @ind_ids = @liked_inds.map_relation_to_array(:industry_id)
+    @left_industries = Industry.where.not({:id => @ind_ids})
     
     render({ :template => "interested_industries/index.html.erb" })
   end
@@ -19,7 +24,7 @@ class InterestedIndustriesController < ApplicationController
 
   def create
     the_interested_industry = InterestedIndustry.new
-    the_interested_industry.industry_id = params.fetch("query_industry_id")
+    the_interested_industry.industry_id = params.fetch("query_interest_id")
     the_interested_industry.user_id = @current_user.id
 
     if the_interested_industry.valid?

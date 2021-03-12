@@ -29,6 +29,7 @@ class JobsController < ApplicationController
     the_job.deadline = params.fetch("query_deadline")
     the_job.industry_id = params.fetch("query_industry_id")
     the_job.role = params.fetch("query_role")
+    the_job.poster_id = @current_user.id
     orgname = params.fetch("prepop_org")
     if orgname == 'blank' || orgname == 'none'
       new_orga = Organization.new 
@@ -45,14 +46,11 @@ class JobsController < ApplicationController
       the_org = Organization.where({ :name => the_org_name}).at(0)
       the_job.org_id = the_org.id
     end 
-
-    ###the_job.org_id = params.fetch("query_org_id")
-
     if the_job.valid?
       the_job.save
       redirect_to("/jobs", { :notice => "Job created successfully." })
     else
-      redirect_to("/jobs", { :notice => "Job failed to create successfully." })
+      redirect_to("/jobs", { :notice => "Job failed to create successfully" + the_job})
     end
   end
 

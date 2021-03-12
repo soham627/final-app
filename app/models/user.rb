@@ -21,4 +21,7 @@ class User < ApplicationRecord
   has_many :jobs, through: :favorites, source: :job
   has_many :liked_industries, through: :interested_industries, source: :industry
 
+  has_many  :postings, class_name: "Job", foreign_key: "poster_id", dependent: :destroy
+
+
 end

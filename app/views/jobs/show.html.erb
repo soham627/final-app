@@ -16,7 +16,7 @@
         </a>
       </div>
 
-      <%=if @current_user%>
+     
       <div>
         <a href="/delete_job/<%= @the_job.id %>">
           Delete job
@@ -28,6 +28,7 @@
       <a href="<%= @the_job.link %>">
       <dt>
         Apply here
+        <%=@the_job%>
       </dt>
       </a>
 

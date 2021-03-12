@@ -28,7 +28,7 @@
             Add new organization
           </option>
           <% Organization.all.order(:name).each do |a_org|%>
-          <option value="<%=a_org.name%>%">
+          <option value="<%=a_org.name%>">
             <%= a_org.name%>
           </option>
           <% end%>

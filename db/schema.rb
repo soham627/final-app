@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_11_055223) do
+ActiveRecord::Schema.define(version: 2021_03_12_010407) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "job_id"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_03_11_055223) do
     t.text "role"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "poster_id"
   end
 
   create_table "organizations", force: :cascade do |t|

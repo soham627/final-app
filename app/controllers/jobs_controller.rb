@@ -22,6 +22,9 @@ class JobsController < ApplicationController
     render({ :template => "jobs/show.html.erb" })
   end
 
+  def job_form 
+    render({ :template => "jobs/creator.html.erb" })
+  end 
   def create
     the_job = Job.new
     the_job.link = params.fetch("query_link")

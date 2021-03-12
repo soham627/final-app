@@ -1,0 +1,114 @@
+<div>
+  <div>
+    <h2>
+      Add a new job
+    </h2>
+
+    <form action="/insert_job" method="post">
+      <div>
+        <label for="org_name_selector">
+          Organization:
+        </label>
+
+        <select id="org_name_selector" name="prepop_org">
+          <option value='blank'>
+            ------------------------
+          </option>
+          <option value='none'>
+            Add new organization
+          </option>
+          <% Organization.all.order(:name).each do |a_org|%>
+          <option value="<%=a_org.name%>">
+            <%= a_org.name%>
+          </option>
+          <% end%>
+        </select>
+      </div>
+      <div>
+        If we don't have the organization on record, tell us a little more about it:
+      </div>
+      <div>
+
+        <label for="new_org">
+          Name of Organization
+        </label>
+
+        <input type="text" id="new_org" name="new_org_name">
+      </div>
+      <div>
+
+        <label for="new_web">
+          Website
+        </label>
+
+        <input type="string" id="new_web" name="new_org_website">
+      </div>
+      <div>
+      <hr>
+
+      <hr>
+        <h3>
+          Job details
+        </h3>
+
+        <label for="link_box">
+          Link to role
+        </label>
+
+        <input type="text" id="link_box" name="query_link">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description" rows="3"></textarea>
+      </div>
+
+      <div>
+        <input type="checkbox" id="int_students_box" name="query_int_students" value="1">
+
+        <label for="int_students_box">Hires international students</label>
+      </div>
+
+      <div>
+        <label for="deadline_box">
+          Deadline
+        </label>
+
+        <input type="date" id="deadline_box" name="query_deadline">
+      </div>
+
+      <div>
+        <label for="industry_id_box">
+          Industry
+        </label>
+
+
+        <select id="industry_id_box" name="query_industry_id">
+
+          <% Industry.all.order(:name).each do |a_industry|%>
+          <option value="<%=a_industry.id%>">
+            <%= a_industry.name%>
+          </option>
+          <% end%>
+        </select>
+      </div>
+
+
+
+      <div>
+        <label for="role_box">
+          Role
+        </label>
+
+        <textarea id="role_box" name="query_role" rows="3"></textarea>
+      </div>
+
+      <button>
+        Create job
+      </button>
+    </form>
+  </div>
+</div>

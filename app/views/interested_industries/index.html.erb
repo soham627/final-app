@@ -11,7 +11,7 @@
 <div>
   <div>
     <h2>
-      Add a new interested industry
+      Follow a new industry
     </h2>
 
     <form action="/insert_interested_industry" method="post">
@@ -30,7 +30,7 @@
       </div>
 
       <button>
-        Add interested industry
+        Follow industry
       </button>
     </form>
   </div>
@@ -46,6 +46,8 @@
         <th>
           Industry
         </th>
+        <th>
+        </th>
       </tr>
 
       <% @listed_and_liked.each do |an_interested_industry| %>
@@ -56,6 +58,13 @@
           <%= an_interested_industry.name %>
           </a>
         </td>
+
+        <td>
+        <%back_to_interested = InterestedIndustry.where({ :industry_id => an_interested_industry.id}).at(0)%>
+        <a href="/delete_interested_industry/<%= back_to_interested.id %>">
+          Unfollow
+        </a>
+      </td>
       </tr>
       <% end %>
     </table>

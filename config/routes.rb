@@ -98,7 +98,7 @@ Rails.application.routes.draw do
   #------------------------------
 
   # Routes for the Job resource:
-  get("/jobcreator", { :controller => "jobs", :action => "job_form" })
+  get("/jobs/creator", { :controller => "jobs", :action => "job_form" })
 
   # CREATE
   post("/insert_job", { :controller => "jobs", :action => "create" })

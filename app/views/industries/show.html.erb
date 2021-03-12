@@ -1,8 +1,15 @@
 <div>
   <div>
     <h1>
-      Industry #<%= @the_industry.id %> details
+      <%= @the_industry.name %> 
     </h1>
+    <h3>
+      <%if @the_industry.jobs_count==1%>
+      <%= @the_industry.jobs_count %> Job
+      <%else%>
+      <%= @the_industry.jobs_count %> Job
+      <%end %>
+    </h3>
 
     <div>
       <div>
@@ -10,49 +17,106 @@
           Go back
         </a>
       </div>
-
+      <%if @current_user!=nil && @current_user.id==1%>
       <div>
         <a href="/delete_industry/<%= @the_industry.id %>">
           Delete industry
         </a>
       </div>
+      <%end %>
     </div>
-
-    <dl>
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @the_industry.name %>
-      </dd>
-
-      <dt>
-        Jobs count
-      </dt>
-      <dd>
-        <%= @the_industry.jobs_count %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_industry.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_industry.updated_at) %> ago
-      </dd>
-    </dl>
   </div>
-</div>
+
+  <div>
+    <%if @the_industry.jobs_count==nil%>
+      <div>There are currently no listed <%=@the_industry.name%> jobs. <a href='/jobs/creator'>Add one!</a>
+      </div>
+    <%else%>
+        <table>
+          <tr>
+
+            <th>
+              Role
+            </th>
+
+            <th>
+              Organization
+            </th>
+
+            <th>
+              Industry
+            </th>
+
+            <th>
+              International students?
+            </th>
+
+            <th>
+              Deadline
+            </th>
+
+            <th>
+              Posted at
+            </th>
+
+            <th>
+              Apply
+            </th>
+
+          </tr>
+
+          <% @the_industry.jobs.each do |a_job| %>
+          <tr>
+            <td>
+              <a href="/jobs/<%= a_job.id %>">
+              <%= a_job.role %>
+              </a>
+            </td>
+
+            <td>
+              <a href="/organizations/<%= a_job.org.id %>">
+              <%= a_job.org.name %>
+              </a>
+            </td>
+            <td>
+              <%= a_job.industry.name %>
+            </td>
+
+            <td>
+              <%if a_job.int_students== true%>
+                Yes
+              <%else%>
+                No
+              <%end %>
+            </td>
+
+            <td>
+              <%= a_job.deadline %>
+            </td>
+
+            <td>
+              <%= time_ago_in_words(a_job.created_at) %> ago
+            </td>
+
+            <td>
+              <a href="<%= a_job.link %>" target="_blank">
+                Apply
+              </a>
+              
+            </td>
+
+
+
+          </tr>
+          <% end %>
+        </table>
+    <%end %>
+  </div>
+
 
 <hr>
 
-
+<%if @current_user!=nil && @current_user.id==1%>
 <div>
   <div>
     <h2>
@@ -82,5 +146,5 @@
     </form>
   </div>
 </div>
-
+<%end%>
 <hr>

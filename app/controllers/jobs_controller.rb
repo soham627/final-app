@@ -1,4 +1,8 @@
 class JobsController < ApplicationController
+  def home 
+    redirect_to("/jobs/")
+  end 
+  
   def index
     matching_jobs = Job.all
 

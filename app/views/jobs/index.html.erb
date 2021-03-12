@@ -128,24 +128,13 @@
   <div>
     <table>
       <tr>
+
         <th>
-          ID
+          Role
         </th>
 
         <th>
-          Link
-        </th>
-
-        <th>
-          Description
-        </th>
-
-        <th>
-          Int students
-        </th>
-
-        <th>
-          Deadline
+          Organization
         </th>
 
         <th>
@@ -153,40 +142,36 @@
         </th>
 
         <th>
-          Org
+          International students?
         </th>
 
         <th>
-          Role
+          Deadline
         </th>
 
         <th>
-          Created at
+          Posted at
         </th>
 
         <th>
-          Updated at
+          Apply
         </th>
 
-        <th>
-        </th>
       </tr>
 
       <% @list_of_jobs.each do |a_job| %>
       <tr>
         <td>
-          <%= a_job.id %>
-        </td>
-
-        <td>
-          <a href="<%= a_job.link %>" target="_blank">
-            Apply
+          <a href="/jobs/<%= a_job.id %>">
+          <%= a_job.role %>
           </a>
-          
         </td>
 
-        <td>
-          <%= a_job.description %>
+         <td>
+          <%= a_job.org.name %>
+        </td>
+         <td>
+          <%= a_job.industry.name %>
         </td>
 
         <td>
@@ -197,30 +182,19 @@
           <%= a_job.deadline %>
         </td>
 
-        <td>
-          <%= a_job.industry_id %>
-        </td>
-
-        <td>
-          <%= a_job.org_id %>
-        </td>
-
-        <td>
-          <%= a_job.role %>
-        </td>
-
-        <td>
+         <td>
           <%= time_ago_in_words(a_job.created_at) %> ago
         </td>
-        <td>
-          <%= time_ago_in_words(a_job.updated_at) %> ago
-        </td>
 
         <td>
-          <a href="/jobs/<%= a_job.id %>">
-            Show details
+          <a href="<%= a_job.link %>" target="_blank">
+            Apply
           </a>
+          
         </td>
+
+
+
       </tr>
       <% end %>
     </table>

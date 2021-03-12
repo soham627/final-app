@@ -1,4 +1,5 @@
 class OrganizationsController < ApplicationController
+  skip_before_action(:force_user_sign_in, { :only => [:index, :show]})
   def index
     matching_organizations = Organization.all
 

@@ -1,19 +1,19 @@
 <div>
   <div>
     <h1>
-      List of all industries
+      Industries
     </h1>
   </div>
 </div>
 
 <hr>
+<%if @current_user!=nil && @current_user.id == 1%>
 
 <div>
   <div>
     <h2>
       Add a new industry
     </h2>
-
     <form action="/insert_industry" method="post">
       <div>
         <label for="name_box">
@@ -23,13 +23,6 @@
         <input type="text" id="name_box" name="query_name">
       </div>
 
-      <div>
-        <label for="jobs_count_box">
-          Jobs count
-        </label>
-
-        <input type="text" id="jobs_count_box" name="query_jobs_count">
-      </div>
 
       <button>
         Create industry
@@ -39,59 +32,33 @@
 </div>
 
 <hr>
+<%end %>
 <div>
   <div>
     <table>
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Name
         </th>
 
         <th>
-          Jobs count
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
+          Jobs
         </th>
       </tr>
 
       <% @list_of_industries.each do |an_industry| %>
       <tr>
-        <td>
-          <%= an_industry.id %>
-        </td>
+  
 
         <td>
+          <a href="/industries/<%= an_industry.id %>">
           <%= an_industry.name %>
+          </a>
         </td>
 
         <td>
           <%= an_industry.jobs_count %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(an_industry.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(an_industry.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/industries/<%= an_industry.id %>">
-            Show details
-          </a>
         </td>
       </tr>
       <% end %>

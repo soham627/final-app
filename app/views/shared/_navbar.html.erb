@@ -37,5 +37,10 @@
         </li>
       </ul>
     </div> <!-- .navbar-collapse -->
+  <% if @current_user != nil%>
+  <div class='text_end'>
+    <a href="/user_sign_out">Sign Out</a>
+  </div>
+  <%end %>
   </div> <!-- .container -->
 </nav>

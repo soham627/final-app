@@ -48,18 +48,12 @@
         </th>
       </tr>
 
-      <% @list_of_interested_industries.each do |an_interested_industry| %>
+      <% @listed_and_liked.each do |an_interested_industry| %>
       <tr>
 
         <td>
-          
-          <%= an_interested_industry.industry_id %>
-        </td>
-
-
-        <td>
-          <a href="/interested_industries/<%= an_interested_industry.id %>">
-            Show details
+          <a href="/industries/<%= an_interested_industry.id %>">
+          <%= an_interested_industry.name %>
           </a>
         </td>
       </tr>

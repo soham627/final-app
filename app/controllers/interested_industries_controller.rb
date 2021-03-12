@@ -1,9 +1,10 @@
 class InterestedIndustriesController < ApplicationController
   def index
-    matching_interested_industries = InterestedIndustry.all
+    matching_interested_industries = InterestedIndustry.where({:user_id => @current_user.id})
 
     @list_of_interested_industries = matching_interested_industries.order({ :created_at => :desc })
-
+    @map_to_industries = @list_of_interested_industries.map_relation_to_array(:industry_id)
+    @listed_and_liked = Industry.where({ :id => @map_to_industries})
 
     @liked_inds = InterestedIndustry.where({ :user_id => @current_user.id})
     @ind_ids = @liked_inds.map_relation_to_array(:industry_id)

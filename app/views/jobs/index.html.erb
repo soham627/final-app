@@ -99,7 +99,7 @@
         <select id="industry_id_box" name="query_industry_id">
 
           <% Industry.all.order(:name).each do |a_industry|%>
-          <option value="<%=a_industry.id%>%">
+          <option value="<%=a_industry.id%>">
             <%= a_industry.name%>
           </option>
           <% end%>

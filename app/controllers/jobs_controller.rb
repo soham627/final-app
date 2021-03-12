@@ -30,6 +30,10 @@ class JobsController < ApplicationController
     the_job.industry_id = params.fetch("query_industry_id")
     the_job.role = params.fetch("query_role")
     the_job.poster_id = @current_user.id
+    #the_job.id = Job.all.at(-1).id + 1
+    #the_job.created_at = Time.now 
+    #the_job.updated_at = Time.now 
+
     orgname = params.fetch("prepop_org")
     if orgname == 'blank' || orgname == 'none'
       new_orga = Organization.new 

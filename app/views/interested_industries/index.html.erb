@@ -20,6 +20,7 @@
           Industry
         </label>
         <select id="industry_id_box" name="query_industry_id">
+          
           <% Industry.all.order(:name).each do |a_industry|%>
           <option value="<%=a_industry.name%>">
             <%= a_industry.name%>

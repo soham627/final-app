@@ -21,7 +21,7 @@ class IndustriesController < ApplicationController
   def create
     the_industry = Industry.new
     the_industry.name = params.fetch("query_name")
-    the_industry.jobs_count = params.fetch("query_jobs_count")
+    #the_industry.jobs_count = params.fetch("query_jobs_count")
 
     if the_industry.valid?
       the_industry.save

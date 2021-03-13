@@ -17,6 +17,29 @@
   
 </div>
 
+<div>
+<%= search_form_for @q do |f| %>
+  <p>Narrow results:</p>
+
+  <div>
+    <%= f.label :role_cont, "Role containing" %>
+    <%= f.text_field :role_cont, :placeholder => "Enter a few characters" %>
+  </div>
+  <div>
+    <%= f.label :org_name_cont, "Organization name"%>
+    <%= f.text_field :org_name_cont, :placeholder => "Enter organization name" %>
+  </div>
+  <div>
+  <%= f.label :industry_id_eq, "Industry" %>
+  <%= f.select :industry_id_eq, options_from_collection_for_select(Industry.all, :name, :name, @q.industry_id_eq), { :include_blank => true } %>
+</div>
+
+  <%= f.submit :class => "btn btn-primary " %>
+  
+  <a href="/jobs">Clear filters</a>
+<% end %>
+</div>
+
 <hr>
 <div>
   <div>

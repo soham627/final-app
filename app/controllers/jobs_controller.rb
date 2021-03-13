@@ -5,10 +5,13 @@ class JobsController < ApplicationController
   end 
   
   def index
-    matching_jobs = Job.all
+    #matching_jobs = Job.all
+    @q = Job.ransack(params[:q])
+    @list_of_jobs = @q.result(:distinct => true).includes(:industry, :org)
 
-    @list_of_jobs = matching_jobs.order({ :created_at => :desc })
 
+    #@list_of_jobs = Job.all.order({ :created_at => :desc })
+    
     render({ :template => "jobs/index.html.erb" })
   end
 

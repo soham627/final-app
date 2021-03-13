@@ -19,8 +19,8 @@ class FavoritesController < ApplicationController
 
   def create
     the_favorite = Favorite.new
-    the_favorite.job_id = params.fetch("query_job_id")
-    the_favorite.user_id = params.fetch("query_user_id")
+    the_favorite.job_id = params.fetch("liked_job_id")
+    the_favorite.user_id = @current_user.id
 
     if the_favorite.valid?
       the_favorite.save
@@ -46,6 +46,15 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
+    the_id = params.fetch("path_id")
+    the_favorite = Favorite.where({ :id => the_id }).at(0)
+    jobid = the_favorite.job_id
+    the_favorite.destroy
+
+    redirect_to("/jobs/#{jobid}", { :notice => "Favorite deleted successfully."} )
+  end
+
+   def delete_show
     the_id = params.fetch("path_id")
     the_favorite = Favorite.where({ :id => the_id }).at(0)
     jobid = the_favorite.job_id

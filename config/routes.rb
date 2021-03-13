@@ -95,7 +95,8 @@ Rails.application.routes.draw do
   post("/modify_favorite/:path_id", { :controller => "favorites", :action => "update" })
   
   # DELETE
-  get("/delete_favorite/", { :controller => "favorites", :action => "destroy" })
+  get("/delete_favorite/:path_id", { :controller => "favorites", :action => "destroy" })
+  get("/delete_fave/:path_id", { :controller => "favorites", :action => "delete_show" })
 
   #------------------------------
 

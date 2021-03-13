@@ -3,23 +3,22 @@
     <h1>
       <%= @the_job.role %> 
     </h1>
-    <div>
     <% if Favorite.where({ :user_id => @current_user.id, :job_id => @the_job.id}).at(0)==nil%>
     <form action="/insert_favorite" method="post">
-      <input type="text" id="thejob" name="query_job_id" value="<%@the_job.id%>" >
-      <input type="text" id="theuser" name="query_user_id" value="<%@current_user.id%>" >
+      <input type="hidden" id="thejob" name="liked_job_id" value='<%=@the_job.id%>' >
       <button >
         Bookmark 
       </button>
     </form>
     <%else %>
       <%the_bookmark = Favorite.where({ :user_id => @current_user.id, :job_id => @the_job.id}).at(0)%>
-      <form action="/delete_favorite/<%the_bookmark.id%>" method="get">
+      <%=the_bookmark.id%>
+      <form action="/delete_fave/<%=the_bookmark.id%>" >
       <button>
         Un-bookmark 
       </button>
     <%end %>
-  </div>
+
     
 
     <h2>

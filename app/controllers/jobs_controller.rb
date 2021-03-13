@@ -62,9 +62,6 @@ class JobsController < ApplicationController
     end
   end
 
-  def bookmark 
-
-  end 
 
   def update
     the_id = params.fetch("path_id")

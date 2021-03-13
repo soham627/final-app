@@ -15,6 +15,15 @@ class OrganizationsController < ApplicationController
 
     @the_organization = matching_organizations.at(0)
 
+    allratings = Rating.where({ :org_id => @the_organization.id})
+    agg_rating = 0
+    num_reviews = 0
+    allratings.each do |a_rating|
+      num_reviews = num_reviews+1
+      agg_rating =agg_rating + a_rating.user_rating
+    end 
+    @final_rating = agg_rating/num_reviews.to_f
+    @final_num_reviews = num_reviews
     render({ :template => "organizations/show.html.erb" })
   end
 

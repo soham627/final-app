@@ -43,9 +43,9 @@ class InterestedIndustriesController < ApplicationController
     the_interested_industry.user_id = @current_user.id
     if the_interested_industry.valid?
       the_interested_industry.save
-      redirect_to("/interested_industries", { :notice => "Interested industry created successfully." })
+      redirect_to("/industries/#{the_interested_industry.industry_id}", { :notice => "Followed!" })
     else
-      redirect_to("/interested_industries", { :notice => "Interested industry failed to create successfully." })
+      redirect_to("/industries/#{the_interested_industry.industry_id}", { :notice => "Follow failed." })
     end
   end 
 
@@ -71,5 +71,12 @@ class InterestedIndustriesController < ApplicationController
     the_interested_industry.destroy
 
     redirect_to("/interested_industries", { :notice => "Interested industry deleted successfully."} )
+  end
+  def destroy_show
+    the_id = params.fetch("path_id")
+    the_interested_industry = InterestedIndustry.where({ :id => the_id }).at(0)
+    the_interested_industry.destroy
+    the_industry_id = params.fetch("industry_redirect")
+    redirect_to("/industries/#{the_industry_id}", { :notice => "Interested industry deleted successfully."} )
   end
 end

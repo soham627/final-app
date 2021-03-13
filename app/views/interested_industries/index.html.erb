@@ -60,7 +60,7 @@
         </td>
 
         <td>
-        <%back_to_interested = InterestedIndustry.where({ :industry_id => an_interested_industry.id}).at(0)%>
+        <%back_to_interested = InterestedIndustry.where({ :industry_id => an_interested_industry.id, :user_id => @current_user.id}).at(0)%>
         <a href="/delete_interested_industry/<%= back_to_interested.id %>">
           Unfollow
         </a>

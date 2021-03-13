@@ -57,7 +57,7 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_interested_industry/:path_id", { :controller => "interested_industries", :action => "destroy" })
-  get("/delete_interested_industry/:path_id", { :controller => "interested_industries", :action => "destroy" })
+  get("/delete_from_show/:path_id", { :controller => "interested_industries", :action => "destroy_show" })
 
   #------------------------------
 

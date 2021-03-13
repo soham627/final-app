@@ -42,7 +42,6 @@ class UserAuthenticationController < ApplicationController
     @user.password = params.fetch("query_password")
     @user.password_confirmation = params.fetch("query_password_confirmation")
     @user.bio = params.fetch("query_bio")
-    @user.favorites_count = params.fetch("query_favorites_count")
 
     save_status = @user.save
 

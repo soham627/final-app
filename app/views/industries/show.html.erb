@@ -3,11 +3,17 @@
     <h1>
       <%= @the_industry.name %> 
     </h1>
+    <form action="/follow_from_show" method="post">
+    <input type="hidden" id="interested_from_show" name="show_interest_id" value='<%=@the_industry.id%>'>
+    <button>
+      Follow
+    </button>
+    </form>
     <h3>
       <%if @the_industry.jobs_count==1%>
       <%= @the_industry.jobs_count %> Job
       <%else%>
-      <%= @the_industry.jobs_count %> Job
+      <%= @the_industry.jobs_count %> Jobs
       <%end %>
     </h3>
 

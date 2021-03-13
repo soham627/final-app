@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_interested_industry", { :controller => "interested_industries", :action => "create" })
+  post("/follow_from_show", { :controller => "interested_industries", :action => "follow" })
           
   # READ
   get("/interested_industries", { :controller => "interested_industries", :action => "index" })
@@ -55,6 +56,7 @@ Rails.application.routes.draw do
   post("/modify_interested_industry/:path_id", { :controller => "interested_industries", :action => "update" })
   
   # DELETE
+  get("/delete_interested_industry/:path_id", { :controller => "interested_industries", :action => "destroy" })
   get("/delete_interested_industry/:path_id", { :controller => "interested_industries", :action => "destroy" })
 
   #------------------------------

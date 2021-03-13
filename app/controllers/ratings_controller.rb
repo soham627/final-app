@@ -13,10 +13,10 @@ class RatingsController < ApplicationController
     matching_organizations = Organization.where({ :id => the_id })
     @the_organization = matching_organizations.at(0)
 
-    allratings = Rating.where({ :org_id => @the_organization.id})
+    @allratings = Rating.where({ :org_id => @the_organization.id})
     agg_rating = 0
     num_reviews = 0
-    allratings.each do |a_rating|
+    @allratings.each do |a_rating|
       num_reviews = num_reviews+1
       agg_rating =agg_rating + a_rating.user_rating
     end 

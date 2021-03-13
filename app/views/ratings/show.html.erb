@@ -24,9 +24,9 @@
 <%if @final_num_reviews==0 || @final_num_reviews==nil %>
   No reviews
 <%elsif @final_num_reviews==1%>
- Rating (based on 1 rating): <%=@final_rating%>
+ Rating (based on 1 rating): <b><%=@final_rating%>/5.0</b>
 <%else %>
-  Rating (based on <%=@final_num_reviews%> ratings): <%=@final_rating%>
+  Rating (based on <%=@final_num_reviews%> ratings): <b><%=@final_rating%>/5.0</b>
 <%end%>
 </div>
 <hr>
@@ -69,10 +69,44 @@
         Add Review
       </button>
     </form>
+<hr>
   <h2>
   Reviews 
   </h2>
   <div>
-  
+    <%if @allratings.at(0)==nil%>
+      <div>No reviews
+      </div>
+    <%else%>
+        <table>
+          <tr>
+
+            <th>
+              Description
+            </th>
+
+            <th>
+              Rating
+            </th>
+
+            <th>
+              Posted at
+            </th>
+
+          </tr>
+    <%@allratings.each do |one_rating|%>
+      <tr>
+            <td>
+              <%=one_rating.explanation%>
+            </td>
+            <td>
+              <%=one_rating.user_rating%>
+            </td>
+            <td>
+              <%=one_rating.created_at%>
+            </td>
+        </tr>
+    <%end %>
+    <%end%>
   </div>
   

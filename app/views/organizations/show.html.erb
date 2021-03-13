@@ -33,52 +33,18 @@
 <%if @final_num_reviews==0 || @final_num_reviews==nil %>
   No ratings
 <%elsif @final_num_reviews==1%>
- Rating (based on 1 rating): <%=@final_rating%>
+ Rating (based on 1 rating): <%=@final_rating%>/5.0
 <%else %>
-  Rating (based on <%=@final_num_reviews%> ratings): <%=@final_rating%>
+  Rating (based on <%=@final_num_reviews%> ratings): <%=@final_rating%>/5.0
 <%end%>
+<div>
+<a href="/ratings/<%=@the_organization.id%>">
+  See all reviews or write your own
+</a>
+</div>
 </div>
 <hr>
 
-<h2>
-  Write a review
-</h2>
- <form action="/insert_rating_from_org/<%=@the_organization.id%>" method="post">
-      <div>
-        <label for="rating_box">
-          Rating:
-        </label>
-        <select id="rating_box" name="my_rating">
-          <option value='1'>
-            1 (working with this organization was terrible)
-          </option>
-          <option value="2">
-            2 
-          </option>
-          <option value="3">
-            3 
-          </option>
-          <option value="4">
-            4 
-          </option>
-          <option value="5">
-            5 (working with this organization was great!)
-          </option>
-        </select>
-        <div>
-        <label for="expl_box">
-          Review
-        </label>
-        </div>
-
-        <input type="textarea" id="expl_box" name="query_explanation">
-      </div>
-
-
-      <button>
-        Add Review
-      </button>
-    </form>
 <%if @current_user!=nil && @current_user.id==1%>
 <div>
   <div>

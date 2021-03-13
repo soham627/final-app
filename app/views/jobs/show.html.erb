@@ -12,7 +12,6 @@
     </form>
     <%else %>
       <%the_bookmark = Favorite.where({ :user_id => @current_user.id, :job_id => @the_job.id}).at(0)%>
-      <%=the_bookmark.id%>
       <form action="/delete_fave/<%=the_bookmark.id%>" >
       <button>
         Un-bookmark 

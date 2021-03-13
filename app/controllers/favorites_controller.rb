@@ -1,6 +1,9 @@
 class FavoritesController < ApplicationController
   def index
-    matching_favorites = Favorite.all
+    matching_favorites = Favorite.where({ :user_id => @current_user.id})
+    @list_of_faves = matching_favorites.order({ :created_at => :desc })
+    @map_to_jobs = @list_of_faves.map_relation_to_array(:job_id)
+    @the_jobs_i_like = Job.where({ :id => @map_to_jobs})
 
     @list_of_favorites = matching_favorites.order({ :created_at => :desc })
 

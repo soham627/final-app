@@ -1,40 +1,8 @@
 <div>
   <div>
     <h1>
-      List of all favorites
+      Bookmarked Jobs
     </h1>
-  </div>
-</div>
-
-<hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new favorite
-    </h2>
-
-    <form action="/insert_favorite" method="post">
-      <div>
-        <label for="job_id_box">
-          Job
-        </label>
-
-        <input type="text" id="job_id_box" name="query_job_id">
-      </div>
-
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
-      <button>
-        Create favorite
-      </button>
-    </form>
   </div>
 </div>
 
@@ -43,56 +11,79 @@
   <div>
     <table>
       <tr>
+
         <th>
-          ID
+          Role
         </th>
 
         <th>
-          Job
+          Organization
         </th>
 
         <th>
-          User
+          Industry
         </th>
 
         <th>
-          Created at
+          International students?
         </th>
 
         <th>
-          Updated at
+          Deadline
         </th>
 
         <th>
+          Posted at
         </th>
+
+        <th>
+          Apply
+        </th>
+
       </tr>
 
-      <% @list_of_favorites.each do |a_favorite| %>
+      <% @the_jobs_i_like.each do |a_job| %>
       <tr>
         <td>
-          <%= a_favorite.id %>
-        </td>
-
-        <td>
-          <%= a_favorite.job_id %>
-        </td>
-
-        <td>
-          <%= a_favorite.user_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_favorite.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_favorite.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/favorites/<%= a_favorite.id %>">
-            Show details
+          <a href="/jobs/<%= a_job.id %>">
+          <%= a_job.role %>
           </a>
         </td>
+
+         <td>
+          <a href="/organizations/<%= a_job.org.id %>">
+          <%= a_job.org.name %>
+          </a>
+        </td>
+         <td>
+          <%= a_job.industry.name %>
+        </td>
+
+        <td>
+          <%if a_job.int_students== true%>
+            Yes
+          <%else%>
+            No
+          <%end %>
+        </td>
+
+        <td>
+          <%= a_job.deadline %>
+        </td>
+
+         <td>
+          <%= time_ago_in_words(a_job.created_at) %> ago
+        </td>
+
+        <td>
+          <a href="<%= a_job.link %>" target="_blank">
+            Apply
+          </a>
+          
+        </td>
+
+
+
       </tr>
       <% end %>
     </table>

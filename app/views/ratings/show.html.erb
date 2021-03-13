@@ -1,86 +1,78 @@
 <div>
-  <div>
     <h1>
-      Rating #<%= @the_rating.id %> details
+      <%= @the_organization.name %> 
     </h1>
 
-    <div>
+
       <div>
-        <a href="/ratings">
+        <a href="/organizations/<%=@the_organization.id%>">
           Go back
         </a>
       </div>
-
-      <div>
-        <a href="/delete_rating/<%= @the_rating.id %>">
-          Delete rating
-        </a>
-      </div>
-    </div>
-
+ 
     <dl>
       <dt>
-        Org
+        <a href="<%= @the_organization.website %>">
+        Website
+        </a>
       </dt>
-      <dd>
-        <%= @the_rating.org_id %>
-      </dd>
-
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @the_rating.user_id %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_rating.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_rating.updated_at) %> ago
-      </dd>
+    
     </dl>
   </div>
-</div>
-
-<hr>
-
 
 <div>
-  <div>
-    <h2>
-      Edit rating
-    </h2>
-
-    <form action="/modify_rating/<%= @the_rating.id %>"  method="post" >
+<%if @final_num_reviews==0 || @final_num_reviews==nil %>
+  No reviews
+<%elsif @final_num_reviews==1%>
+ Rating (based on 1 rating): <%=@final_rating%>
+<%else %>
+  Rating (based on <%=@final_num_reviews%> ratings): <%=@final_rating%>
+<%end%>
+</div>
+<hr>
+<h2>
+  Write a review
+</h2>
+ <form action="/insert_rating_from_org/<%=@the_organization.id%>" method="post">
       <div>
-        <label for="org_id_box">
-          Org
+        <label for="rating_box">
+          Rating:
         </label>
+        <select id="rating_box" name="my_rating">
+          <option value='1'>
+            1 (working with this organization was terrible)
+          </option>
+          <option value="2">
+            2 
+          </option>
+          <option value="3">
+            3 
+          </option>
+          <option value="4">
+            4 
+          </option>
+          <option value="5">
+            5 (working with this organization was great!)
+          </option>
+        </select>
+        <div>
+        <label for="expl_box">
+          Review
+        </label>
+        </div>
 
-        <input type="text" id="org_id_box" name="query_org_id" value="<%= @the_rating.org_id %>">
+        <input type="textarea" id="expl_box" name="query_explanation">
       </div>
 
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_rating.user_id %>">
-      </div>
 
       <button>
-        Update rating
+        Add Review
       </button>
     </form>
+  <h2>
+  Reviews 
+  </h2>
+  <div>
+  
   </div>
-</div>
-
-<hr>
+  

@@ -7,13 +7,21 @@ class RatingsController < ApplicationController
     render({ :template => "ratings/index.html.erb" })
   end
 
-  def show
+
+   def show
     the_id = params.fetch("path_id")
+    matching_organizations = Organization.where({ :id => the_id })
+    @the_organization = matching_organizations.at(0)
 
-    matching_ratings = Rating.where({ :id => the_id })
-
-    @the_rating = matching_ratings.at(0)
-
+    allratings = Rating.where({ :org_id => @the_organization.id})
+    agg_rating = 0
+    num_reviews = 0
+    allratings.each do |a_rating|
+      num_reviews = num_reviews+1
+      agg_rating =agg_rating + a_rating.user_rating
+    end 
+    @final_rating = agg_rating/num_reviews.to_f
+    @final_num_reviews = num_reviews
     render({ :template => "ratings/show.html.erb" })
   end
 

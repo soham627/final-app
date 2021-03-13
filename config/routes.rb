@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   # Routes for the Rating resource:
 
   # CREATE
-  post("/insert_rating", { :controller => "ratings", :action => "create" })
+  post("/insert_rating/:org", { :controller => "ratings", :action => "create" })
+  post("/insert_rating_from_org/:org", { :controller => "ratings", :action => "create_from_org" })
           
   # READ
   get("/ratings", { :controller => "ratings", :action => "index" })

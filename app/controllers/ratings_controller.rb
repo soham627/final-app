@@ -19,8 +19,25 @@ class RatingsController < ApplicationController
 
   def create
     the_rating = Rating.new
-    the_rating.org_id = params.fetch("query_org_id")
-    the_rating.user_id = params.fetch("query_user_id")
+    the_rating.org_id = params.fetch("org")
+    the_rating.user_rating = params.fetch("my_rating")
+    the_rating.org_id = params.fetch("org")
+    the_rating.user_id = @current_user.id
+
+    if the_rating.valid?
+      the_rating.save
+      redirect_to("/ratings", { :notice => "Rating created successfully." })
+    else
+      redirect_to("/ratings", { :notice => "Rating failed to create successfully." })
+    end
+  end
+
+   def create_from_org
+    the_rating = Rating.new
+    the_rating.org_id = params.fetch("org")
+    the_rating.user_rating = params.fetch("my_rating")
+    the_rating.explanation = params.fetch("query_explanation")
+    the_rating.user_id = @current_user.id
 
     if the_rating.valid?
       the_rating.save

@@ -1,0 +1,36 @@
+<h2>
+  Edit my review
+</h2>
+ <form action="/modify_rating/<%=@the_rating.id%>" method="post">
+      <div>
+        <label for="rating_box">
+          Rating (1 is low, 5 is high ):
+        </label>
+        <select id="rating_box" name="new_selector">
+          <%1.upto(5) do |new_rating|%>
+            <%if @the_rating.user_rating == new_rating%>
+              <option value='<%=new_rating%>' selected>
+                <%= new_rating%>
+              </option>
+            <%else%>
+              <option value='<%=new_rating%>'>
+                <%= new_rating%>
+              </option>
+            <%end %>
+          <%end%>
+          
+        </select>
+        <div>
+        <label for="new_expl_box">
+          Review
+        </label>
+        </div>
+
+        <input type="textarea" id="new_expl_box" name="new_explanation" value="<%=@the_rating.explanation%>">
+      </div>
+
+
+      <button>
+        Update Review
+      </button>
+    </form>

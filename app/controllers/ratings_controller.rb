@@ -59,15 +59,24 @@ class RatingsController < ApplicationController
     the_id = params.fetch("path_id")
     the_rating = Rating.where({ :id => the_id }).at(0)
 
-    the_rating.org_id = params.fetch("query_org_id")
+    the_rating.user_rating = params.fetch("new_selector")
+    the_rating.explanation = params.fetch("new_explanation")
     the_rating.user_id = @current_user.id
     if the_rating.valid?
       the_rating.save
-      redirect_to("/ratings/#{the_rating.id}", { :notice => "Rating updated successfully."} )
+      redirect_to("/edit_review/#{the_rating.id}", { :notice => "Rating updated successfully."} )
     else
-      redirect_to("/ratings/#{the_rating.id}", { :alert => "Rating failed to update successfully." })
+      redirect_to("/edit_review/#{the_rating.id}", { :alert => "Rating failed to update successfully." })
     end
   end
+
+  def edit_page
+    the_id = params.fetch("path_id")
+    @the_rating = Rating.where({ :id => the_id }).at(0)
+
+    @the_rating.user_id = @current_user.id
+    render({ :template => "ratings/editpage.html.erb"})
+  end 
 
   def destroy
     the_id = params.fetch("path_id")

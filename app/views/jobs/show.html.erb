@@ -6,7 +6,7 @@
     <div>
     <% if Favorite.where({ :user_id => @current_user.id, :job_id => @the_job.id}).at(0)==nil%>
     <form action="/insert_favorite" method="post">
-      <input type="hidden" id="thejob" name="query_job_id" value="<%@the_job.id%>" >
+      <input type="text" id="thejob" name="query_job_id" value="<%@the_job.id%>" >
       <input type="text" id="theuser" name="query_user_id" value="<%@current_user.id%>" >
       <button >
         Bookmark 

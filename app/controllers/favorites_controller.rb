@@ -20,10 +20,7 @@ class FavoritesController < ApplicationController
   def create
     the_favorite = Favorite.new
     the_favorite.job_id = params.fetch("query_job_id")
-    the_job_id = params.fetch("path_id")
-    @job_i_like = Job.where
     the_favorite.user_id = params.fetch("query_user_id")
-    the_favorite.meme = params.fetch("query_user_id")
 
     if the_favorite.valid?
       the_favorite.save

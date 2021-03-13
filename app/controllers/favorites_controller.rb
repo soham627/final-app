@@ -10,15 +10,6 @@ class FavoritesController < ApplicationController
     render({ :template => "favorites/index.html.erb" })
   end
 
-  def show
-    the_id = params.fetch("path_id")
-
-    matching_favorites = Favorite.where({ :id => the_id })
-
-    @the_favorite = matching_favorites.at(0)
-
-    render({ :template => "favorites/show.html.erb" })
-  end
 
   def create
     the_favorite = Favorite.new

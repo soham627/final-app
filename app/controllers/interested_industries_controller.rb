@@ -13,16 +13,6 @@ class InterestedIndustriesController < ApplicationController
     render({ :template => "interested_industries/index.html.erb" })
   end
 
-  def show
-    the_id = params.fetch("path_id")
-
-    matching_interested_industries = InterestedIndustry.where({ :id => the_id })
-
-    @the_interested_industry = matching_interested_industries.at(0)
-
-    render({ :template => "interested_industries/show.html.erb" })
-  end
-
   def create
     the_interested_industry = InterestedIndustry.new
     the_interested_industry.industry_id = params.fetch("query_interest_id")

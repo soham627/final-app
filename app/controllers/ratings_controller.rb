@@ -1,6 +1,6 @@
 class RatingsController < ApplicationController
   def index
-    matching_ratings = Rating.all
+    matching_ratings = Rating.where({ :user_id => @current_user.id})
 
     @list_of_ratings = matching_ratings.order({ :created_at => :desc })
 
@@ -60,8 +60,7 @@ class RatingsController < ApplicationController
     the_rating = Rating.where({ :id => the_id }).at(0)
 
     the_rating.org_id = params.fetch("query_org_id")
-    the_rating.user_id = params.fetch("query_user_id")
-
+    the_rating.user_id = @current_user.id
     if the_rating.valid?
       the_rating.save
       redirect_to("/ratings/#{the_rating.id}", { :notice => "Rating updated successfully."} )

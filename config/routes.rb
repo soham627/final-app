@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # UPDATE
   
   post("/modify_rating/:path_id", { :controller => "ratings", :action => "update" })
+  post("/edit_review/:path_id", { :controller => "ratings", :action => "update" })
   
   # DELETE
   get("/delete_rating/:path_id", { :controller => "ratings", :action => "destroy" })

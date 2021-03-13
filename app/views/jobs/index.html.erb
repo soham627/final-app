@@ -33,6 +33,13 @@
   <%= f.label :industry_id_eq, "Industry" %>
   <%= f.select :industry_id_eq, options_from_collection_for_select(Industry.all, :name, :name, @q.industry_id_eq), { :include_blank => true } %>
 </div>
+<div>
+    <label>
+      <%= f.check_box :int_students_true, {}, 1, nil  %>
+      Accepts international students 
+    </label>
+
+</div>
 
   <%= f.submit :class => "btn btn-primary " %>
   

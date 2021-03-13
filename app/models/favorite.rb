@@ -13,6 +13,6 @@ class Favorite < ApplicationRecord
   belongs_to :job
   validates :user_id, presence: true
   validates :job_id, presence: true
-  validates :job_id, uniqueness: { scope: ["user_id"] }
+  #validates :job_id, uniqueness: { scope: ["user_id"] }
 
 end

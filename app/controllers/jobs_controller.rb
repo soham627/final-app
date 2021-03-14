@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  skip_before_action(:force_user_sign_in, { :only => [:home, :index, :show]})
+  skip_before_action(:force_user_sign_in, { :only => [:home, :index]})
   def home 
     render({ :template => "jobs/home.html.erb" })
   end 

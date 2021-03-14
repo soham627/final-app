@@ -67,7 +67,11 @@
         Hires international students?
       </dt>
       <dd>
-        <%= @the_job.int_students %>
+        <%if @the_job.int_students== true%>
+            Yes
+          <%else%>
+            No
+        <%end %>
       </dd>
 
       <dt>

@@ -9,7 +9,6 @@
       <button >
         Bookmark 
       </button>
-    </form>
     <%else %>
       <%the_bookmark = Favorite.where({ :user_id => @current_user.id, :job_id => @the_job.id}).at(0)%>
       <form action="/delete_fave/<%=the_bookmark.id%>" >
@@ -17,6 +16,7 @@
         Un-bookmark 
       </button>
     <%end %>
+    </form>
 
     
 
@@ -120,7 +120,7 @@
         <input type="checkbox" id="int_students_box" name="query_int_students" value="1" <%= "checked" if @the_job.int_students %>>
 
         <label for="int_students_box">
-            Int students
+            Hires international students
         </label>
       </div>
 
@@ -137,17 +137,32 @@
           Industry
         </label>
 
-        <input type="text" id="industry_id_box" name="query_industry_id" value="<%= @the_job.industry_id %>">
+         <select id="industry_id_box" name="query_industry_id">
+          
+          <% Industry.all.order(:name).each do |a_industry|%>
+          <% if a_industry.id== @the_job.industry_id%>
+          <option value="<%=a_industry.id%>" selected>
+            <%= a_industry.name%>
+          </option>
+          <%else %>
+            <option value="<%=a_industry.id%>">
+            <%= a_industry.name%>
+          </option>
+          <%end%>
+          <% end%>
+        </select>
       </div>
 
       <div>
         <label for="org_id_box">
-          Org
+          Organization
         </label>
 
-        <input type="text" id="org_id_box" name="query_org_id" value="<%= @the_job.org_id %>">
+        <input type="text" id="org_id_box" name="query_org_name" value="<%= Organization.where({ :id => @the_job.org_id}).at(0).name %>">
       </div>
-
+      <div>
+        <input type="hidden" id="org_website" name="query_website" value="<%= Organization.where({ :id => @the_job.org_id}).at(0).website %>">
+      </div>
       <div>
         <label for="role_box">
           Role

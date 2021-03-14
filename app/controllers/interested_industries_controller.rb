@@ -22,7 +22,7 @@ class InterestedIndustriesController < ApplicationController
       the_interested_industry.save
       redirect_to("/interested_industries", { :notice => "Interested industry created successfully." })
     else
-      redirect_to("/interested_industries", { :notice => "Interested industry failed to create successfully." })
+      redirect_to("/interested_industries", { :alert => "Interested industry failed to create successfully." })
     end
   end
 
@@ -35,7 +35,7 @@ class InterestedIndustriesController < ApplicationController
       the_interested_industry.save
       redirect_to("/industries/#{the_interested_industry.industry_id}", { :notice => "Followed!" })
     else
-      redirect_to("/industries/#{the_interested_industry.industry_id}", { :notice => "Follow failed." })
+      redirect_to("/industries/#{the_interested_industry.industry_id}", { :alert => "Follow failed." })
     end
   end 
 

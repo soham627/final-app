@@ -36,7 +36,7 @@ class RatingsController < ApplicationController
       the_rating.save
       redirect_to("/organizations/#{the_rating.org_id}", { :notice => "Rating created successfully." })
     else
-      redirect_to("/organizations/#{the_rating.org_id}", { :notice => "You've already reviewed this organization." })
+      redirect_to("/organizations/#{the_rating.org_id}", { :alert => "You've already reviewed this organization." })
     end
   end
 
@@ -51,7 +51,7 @@ class RatingsController < ApplicationController
       the_rating.save
       redirect_to("/organizations/#{the_rating.org_id}", { :notice => "Rating created successfully." })
     else
-      redirect_to("/organizations/#{the_rating.org_id}", { :notice => "You've already reviewed this organization." })
+      redirect_to("/organizations/#{the_rating.org_id}", { :alert => "You've already reviewed this organization." })
     end
   end
 

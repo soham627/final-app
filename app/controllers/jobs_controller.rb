@@ -49,7 +49,7 @@ class JobsController < ApplicationController
       if new_orga.valid?
         new_orga.save
       else
-        redirect_to("/jobs/index", { :notice => "Organization is invalid." })
+        redirect_to("/jobs/index", { :alert => "Organization is invalid." })
       end
       the_job.org_id = new_orga.id
     else  
@@ -61,7 +61,7 @@ class JobsController < ApplicationController
       the_job.save
       redirect_to("/jobs", { :notice => "Job created successfully." })
     else
-      redirect_to("/jobs", { :notice => "Job failed to create successfully" + the_job})
+      redirect_to("/jobs", { :alert => "Job failed to create "})
     end
   end
 
@@ -75,7 +75,20 @@ class JobsController < ApplicationController
     the_job.int_students = params.fetch("query_int_students", false)
     the_job.deadline = params.fetch("query_deadline")
     the_job.industry_id = params.fetch("query_industry_id")
-    the_job.org_id = params.fetch("query_org_id")
+    org_name = params.fetch("query_org_name")
+    if Organization.where({ :name => org_name}).at(0)!= nil
+      the_job.org_id = Organization.where({ :name => org_name}).at(0).id
+    else
+      the_organization = Organization.new
+      the_organization.website = params.fetch("query_website")
+      the_organization.name = params.fetch("query_name")
+
+      if the_organization.valid?
+        the_organization.save
+      else
+        redirect_to("/jobs/#{the_job.id}", { :alert => "Job failed to update successfully (invalid organization)." })
+      end
+    end 
     the_job.role = params.fetch("query_role")
 
     if the_job.valid?

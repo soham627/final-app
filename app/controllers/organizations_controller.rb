@@ -36,7 +36,7 @@ class OrganizationsController < ApplicationController
       the_organization.save
       redirect_to("/organizations", { :notice => "Organization created successfully." })
     else
-      redirect_to("/organizations", { :notice => "Organization failed to create successfully." })
+      redirect_to("/organizations", { :alert => "Organization failed to create successfully." })
     end
   end
 

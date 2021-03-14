@@ -18,9 +18,9 @@ class FavoritesController < ApplicationController
 
     if the_favorite.valid?
       the_favorite.save
-      redirect_to("/jobs/#{the_favorite.job_id}", { :notice => "Favorite created successfully." })
+      redirect_to("/jobs/#{the_favorite.job_id}", { :notice => "Bookmark created successfully." })
     else
-      redirect_to("/jobs/#{the_favorite.job_id}", { :notice => "Favorite failed to create successfully." })
+      redirect_to("/jobs/#{the_favorite.job_id}", { :alert => "Bookmark failed to create." })
     end
   end
 
@@ -33,9 +33,9 @@ class FavoritesController < ApplicationController
 
     if the_favorite.valid?
       the_favorite.save
-      redirect_to("/favorites/#{the_favorite.id}", { :notice => "Favorite updated successfully."} )
+      redirect_to("/favorites/#{the_favorite.id}", { :notice => "Bookmark updated successfully."} )
     else
-      redirect_to("/favorites/#{the_favorite.id}", { :alert => "Favorite failed to update successfully." })
+      redirect_to("/favorites/#{the_favorite.id}", { :alert => "Bookmark failed to update successfully." })
     end
   end
 

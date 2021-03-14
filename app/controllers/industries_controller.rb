@@ -27,7 +27,7 @@ class IndustriesController < ApplicationController
       the_industry.save
       redirect_to("/industries", { :notice => "Industry created successfully." })
     else
-      redirect_to("/industries", { :notice => "Industry failed to create successfully." })
+      redirect_to("/industries", { :alert => "Industry failed to create successfully." })
     end
   end
 

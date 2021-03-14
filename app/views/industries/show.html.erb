@@ -6,7 +6,7 @@
     <% if InterestedIndustry.where({ :user_id => @current_user.id, :industry_id => @the_industry.id }).at(0)==nil%>
     <form action="/follow_from_show" method="post">
     <input type="hidden" id="interested_from_show" name="show_interest_id" value='<%=@the_industry.id%>'>
-    <button>
+    <button class="btn btn-success">
       Follow
     </button>
     </form>
@@ -14,7 +14,7 @@
       <%interested = InterestedIndustry.where({ :industry_id => @the_industry.id, :user_id => @current_user.id}).at(0)%>
       <form action="/delete_from_show/<%=interested.id%>" method="get">
     <input type="hidden" id="industry_id_show" name="industry_redirect" value='<%=@the_industry.id%>'>
-    <button>
+    <button class="btn btn-success">
       Unfollow
     </button>
     </form>
@@ -156,7 +156,7 @@
         <input type="text" id="jobs_count_box" name="query_jobs_count" value="<%= @the_industry.jobs_count %>">
       </div>
 
-      <button>
+      <button class="btn btn-success">
         Update industry
       </button>
     </form>

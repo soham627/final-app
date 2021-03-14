@@ -18,7 +18,7 @@ class FavoritesController < ApplicationController
 
     if the_favorite.valid?
       the_favorite.save
-      redirect_to("/jobs/#{the_favorite.job_id}", { :notice => "Bookmark created successfully." })
+      redirect_to("/jobs/#{the_favorite.job_id}")
     else
       redirect_to("/jobs/#{the_favorite.job_id}", { :alert => "Bookmark failed to create." })
     end
@@ -45,7 +45,7 @@ class FavoritesController < ApplicationController
     jobid = the_favorite.job_id
     the_favorite.destroy
 
-    redirect_to("/jobs/#{jobid}", { :notice => "Favorite deleted successfully."} )
+    redirect_to("/jobs/#{jobid}")
   end
 
    def delete_show
@@ -54,6 +54,6 @@ class FavoritesController < ApplicationController
     jobid = the_favorite.job_id
     the_favorite.destroy
 
-    redirect_to("/jobs/#{jobid}", { :notice => "Favorite deleted successfully."} )
+    redirect_to("/jobs/#{jobid}")
   end
 end

@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   skip_before_action(:force_user_sign_in, { :only => [:home, :index, :show]})
   def home 
-    redirect_to("/jobs/")
+    render({ :template => "jobs/home.html.erb" })
   end 
   
   def index
